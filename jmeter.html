@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='utf-8' ?><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>jmeter</title><style type="text/css">/* these are the default styles that would normally be applied by a browser */
+h1 {
+	font-size: 120%;
+	font-weight: bold;
+	color: #172f47;
+}
+
+h2 {
+	font-size: 110%;
+	font-weight: bold;
+	color: #172f47;
+}
+
+h3 {
+	font-size: 105%;
+	font-weight: bold;
+	color: #172f47;
+}
+
+h4 {
+	font-weight: bold;
+	color: #172f47;
+}
+
+h5 {
+	font-size: 90%;
+	font-weight: bold;
+	color: #172f47;
+}
+
+h6 {
+	font-size: 80%;
+	font-weight: bold;
+	color: #172f47;
+}
+
+b {
+	font-weight: bold;
+}
+
+strong {
+	font-weight: bold;
+}
+
+i {
+	font-style: italic;
+}
+
+cite {
+	font-style: italic;
+}
+
+em {
+	font-style: italic;
+}
+
+var {
+	font-style: italic;
+}
+
+dfn {
+	font-style: italic;
+}
+
+code {
+	font-family: monospace;
+	color:#4444CC;
+}
+
+pre {
+	font-family: monospace;
+}
+
+/* Java stack traces
+pre.javaStackTrace {
+	font-family: monospace;
+}
+*/
+
+/* sections beginning with -- Error Details --
+pre.eclipseErrorDetails {
+	font-family: monospace;
+}
+*/
+ 
+ins {
+	text-decoration: underline;
+}
+
+del {
+	text-decoration: line-through;
+}
+
+sup {
+	font-size: smaller;
+	vertical-align: super;
+}
+
+a {
+	text-decoration: underline;
+	color: blue;
+}
+
+sup a {
+	text-decoration: none;
+}
+
+sub {
+	font-size: smaller;
+	vertical-align: sub;
+}
+
+dt {
+	font-weight: bold;
+}
+
+blockquote {
+	color: rgb(38, 86, 145);
+}
+
+tt {
+	font-family: monospace;	
+}
+
+q {
+	color: rgb(38, 86, 145);
+}
+</style></head><body><h1 id="jemeter">简单的jemeter之旅</h1><h2 id="jekinsantjemeter">基本目的：jekins 利用 ant 调用jemeter</h2><h2 id="h2-2">基本环境</h2><hr/><ul><li>jekins</li><li>ant</li><li>jmeter</li></ul><h2 id="h2-3">基本原理分析</h2><hr/><p>要调用就要在jekins安装的机器上也安装这个2个软件，当然ant jekins会自己下载 ，但是jmeter就不会了。我们可以自己下载到jekins安装的机器里去。
+都安装好了调用逻辑就比较清晰了， jekins中在build构建步骤设置里就可以添加 ant构建器
+<img alt="jekins截图" title="jekins里ant 调用截图" border="0" src="images/image.png"/>
+相信用过jenkins的都知道 上图是用来构建项目的 步骤设置！
+那么 ant怎么调jmeter呢？ 按照ant 基本结构是 先要有依赖jar路径；这里我们需要时候再指定就好了；然后就是ant执行文件build.xml文件？
+怎么写呢？其实不用着急 ，jmeter提供我们ant调用的方法老规矩看官看下图
+<img alt="jmeter截图" title="jmeter示例截图" border="0" src="images/45.png"/><br/>
+jmeter写的这build.xml文件都能干嘛？ 这应该就是我们的重点了。只有明白了这个build文件我没就能调用了jmeter了.</p><h2 id="jmeterextrasbuild.xml">jmeter/extras下build.xml</h2><hr/><p>先运行一把
+<img alt="jmeter截图" title="jmeter示例截图" border="0" src="images/49.png"/>
+失败了！但可以看到 一个重要的信息  指定了一个 Test.jmx 的文件。jmx文件 这个相信用过jmeter的人都知道怎么来的吧！
+这个文件的位置就在extras目录下面，我们看看它写的是什么吧!
+<img alt="Test.jmx截图" title="Test.jmx示例截图" border="0" src="images/201.png"/>
+调用了java代码随便测试了一下而已。。</p><p>ok 那么接下来就是让他运行成功了！</p><h2 id="jmeterextrasbuild.xml2">jmeter/extras下build.xml 成功结果</h2><hr/><ul><li>我的机器出现报错是我java版本过低 加载不了部分jar文件，这里我使用java7运行就没事了。</li><li>如果你说问我“'ant' 不是内部或外部命令，也不是可运行的程序或批处理文件。” 怎么回事？</li><li>答：知道环境变量path吗？jdk安装里就设置过。一样的道理 只要把path变量加一条 指向ant/bin文件夹</li></ul><p><img alt="jmeter截图" title="jmeter示例截图" border="0" src="images/244.png"/></p><p>ok 那么结果在那里呢？成功了是成功了。这是我们可以看到当前目录下有个html文件"test.html" 是刚刚生成的吗？最后修改时间一看就知道了</p><p>我们打开看看吧!</p><p><img alt="jmeter截图" title="jmeter示例截图" border="0" src="images/305.png"/></p><p>结果已经不错的显示出来了。当然有个问题他是中文的。当然你看不习惯可以自己翻译 成中文，只要修改.xsl文件就好了,查找替换 相信你能做好。</p><ul><li>如果你说问我“你怎么知道是那个.xsl文件？”</li><li>答：没看清楚控制台输出吗？ [xslt] Loading stylesheet D:\tmp\jmeter\apache-jmeter-2.13\extras\jmeter-results-detail-report_21.xsl</li><li>能不能其他方式显示？</li><li>答：可以，通过控制台输出可以看到 这html实际上也是通过 jmeter的结果文件Text.jtl文件生成的，Text.jtl就是一个xml。 xsl文件提供了转换成html文件。你可以自己进行修改或者自己写一个xsl文件，当然也可以写程序或者用其他工具进行转换html</li></ul><h2 id="jmeterextrasText.jtl">jmeter/extras下Text.jtl</h2><hr/><p><img alt="jmeter截图" title="jmeter示例截图" border="0" src="images/704.png"/></p><h2 id="jmeterextrasbuild.xml3">jmeter/extras下build.xml</h2><hr/><p>接下来就是重点了！ build.xml有什么参数？ 这里都写了点什么呢？</p><p><img alt="jmeter截图" title="jmeter示例截图" border="0" src="images/833.png"/>
+这是jmeter提供参数的介绍，简单易懂 。</p><p>看看代码吧</p><pre><code>&lt;property name="testpath" value="${user.dir}"/&gt; 这里是指定测试文件存放的目录，默认是运行ant的目录也就是jmeter/extras/目录
+&lt;property name="jmeter.home" value="${basedir}/.."/&gt; 这里就是jmeter的软件目录了，默认是jmeter/extras/目录的上一级
+&lt;property name="report.title" value="Load Test Results" /&gt;这里就是标题了。
+
+&lt;!-- Name of test (without .jmx) --&gt;
+&lt;property name="test" value="Test"/&gt; 这里指定jmx文件名称，不要后缀哦！！
+
+&lt;!-- Should report include response data for failures? --&gt;
+&lt;property name="show-data" value="n"/&gt; 这里指定jmx文件名称，不要后缀哦！！</code></pre><pre><code>&lt;property name="format" value="2.1"/&gt; 这里指定jtl文件版本！默认是当前jmeter使用的版本. 我是jmeter-2.13那么就是说jmeter-2.13是2.1的jtl文件版本
+
+
+&lt;condition property="style_version" value=""&gt;  这里就判断format 如果是2.0 就设置把style_version设置为""
+    &lt;equals arg1="${format}" arg2="2.0"/&gt;
+&lt;/condition&gt;</code></pre><pre><code>&lt;condition property="style_version" value="_21"&gt; 这里就判断format 如果是2.1 就设置把style_version设置为"_21"
+    &lt;equals arg1="${format}" arg2="2.1"/&gt;
+&lt;/condition&gt;</code></pre><pre><code>&lt;condition property="funcMode"&gt; 这里就判断show-data 如果是y 就设置把funcMode设置为有这个属性true
+    &lt;equals arg1="${show-data}" arg2="y"/&gt;
+&lt;/condition&gt;
+
+&lt;condition property="funcMode" value="false"&gt;这里就判断show-data 如果不是y 就设置把funcMode设置为有这个属性false
+  &lt;not&gt;
+    &lt;equals arg1="${show-data}" arg2="y"/&gt;
+  &lt;/not&gt;
+&lt;/condition&gt;
+
+
+&lt;!-- Allow jar to be picked up locally --&gt;
+&lt;path id="jmeter.classpath"&gt;
+    &lt;fileset dir="${basedir}"&gt;
+      &lt;include name="ant-jmeter*.jar"/&gt; 加入ant-jmeter*.jar （ant插件包）
+    &lt;/fileset&gt;
+&lt;/path&gt;</code></pre><pre><code>&lt;taskdef
+    name="jmeter"
+    classpathref="jmeter.classpath"
+    classname="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask"/&gt; jmeter ant插件定义 </code></pre><p>`<br/></p><p>其实翻译代码没什么意思。后面的代码就算了吧。
+最近发现一个叫“多说”的评论api。加入到我这个静态博客吧！</p>
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="1" data-title="jmeter" data-url="http://liquanchen9.github.io/blog/jmeter.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"liquanchen9"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+ <input type="hidden" value="Qeg8aFLzP9hjnIcmlf0vuuIvVaxw" />
+  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256371324'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1256371324%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</body></html>
