@@ -3,17 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="stylesheets/jquery-ui.css">
+ <style>
+ #draggable {
+   width: 100px;
+   height: 100px;
+   background: #ccc;
+ }
+ </style>
+ <script src="javascripts/jquery-1.10.2.js"></script>
+ <script src="javascripts/jquery-ui.js"></script>
 <style type="text/css">
 body{
 	position: relative;
+	margin: 0;
+	padding: 0;
 }
 .inputWrodWapper{
 	position: absolute;
 	z-index:9;
 	left: 140px;
 	top: 200px;
+	width: 100px;
+	height: 100px;
+	border: 2px solid gray;
 }
-.inputWrodWapper *{
+.inputWrodWapper input{
 	position:relative;
 }
 input {
@@ -21,7 +36,7 @@ input {
 	border: 1px solid gray;
 	color: #fff;
 	width: 200px;
-	height: 100px;
+	height: 50px;
     line-height: 150%;
     font-size: 32px;
     text-align: center;
@@ -34,41 +49,43 @@ input {
 }
 </style>
 </head>
-<body>
-<canvas id="myCanvas" width="800px" height="1000px">your browser does not support the canvas tag </canvas>
-
+<body >
+<canvas id="myCanvas" width="512px" height="512px">your browser does not support the canvas tag </canvas>
 <div class="inputWrodWapper" >
-	<input />
 </div>
-
 <script type="text/javascript">
-
 var canvas=document.getElementById('myCanvas');
 var ctx=canvas.getContext('2d');
 var bg = new Image();
 bg.src= 'images/hezi_bg.jpg';
-
 bg.onload=function(){
-	ctx.drawImage(bg,0,0);
+	drawDiv($(".inputWrodWapper"));
 };
+$(".inputWrodWapper").data("text","Twitter").dblclick(function(){
+	alert("dbClick");
+}).draggable({
+  drag: function( event, ui ) {
+	  drawDiv(ui,$(this));
+  }
+}).resizable();
+function redrawCanvas(){
+	ctx.drawImage(bg,0,0,512,512);
+}
+function drawDiv($div,$this){
+	var offset,$this=$this||$div;
+	if($div.is && $div.is("div")){
+		offset= $div.offset();
+	}else{
+		offset= $div.offset;
+	}
+ redrawCanvas();
+ ctx.font="20px 'Tekton Pro'";
+ ctx.fillStyle="#FFF";
+ ctx.fillText($this.data("text"),offset.left+20,offset.top+50);
+}
 </script>
-<!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="1" data-title="jmeter" data-url="http://liquanchen9.github.io/blog/jmeter.html"></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"liquanchen9"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- 多说公共JS代码 end -->
+<!-- 
  <input type="hidden" value="Qeg8aFLzP9hjnIcmlf0vuuIvVaxw" />
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256371324'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1256371324%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
-</body>
+ --></body>
 </html>
