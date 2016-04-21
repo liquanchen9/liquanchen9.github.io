@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="stylesheets/jquery-ui.css">
  <style>
  #draggable {
-   width: 100px;
+   width: 100px;  
    height: 100px;
    background: #ccc;
  }  
@@ -56,11 +56,11 @@ input {
 <script type="text/javascript">
 var canvas=document.getElementById('myCanvas');
 var ctx=canvas.getContext('2d');
-var bg = new Image();
+var bg = new Image();  
 bg.src= 'images/hezi_bg.jpg';
 bg.onload=function(){
 	drawDiv($(".inputWrodWapper"));
-};
+}; 
 $(".inputWrodWapper").data("text","Twitter").dblclick(function(){
 	alert("dbClick");
 }).draggable({
