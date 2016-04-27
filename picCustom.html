@@ -3,18 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- https://code.jquery.com/ui/1.11.4/themes/black-tie/jquery-ui.css -->
 <link rel="stylesheet" href="stylesheets/jquery-ui.css">
- <style>
+<style type="text/css">
  #draggable {
    width: 100px;  
    height: 100px;
    background: #ccc;
  }  
- </style>
- <script src="javascripts/jquery-1.10.2.js"></script>
- <script src="javascripts/jquery-ui.js"></script>
-<style type="text/css">
-body{
+.container{
 	position: relative;
 	margin: 0;
 	padding: 0;
@@ -27,6 +24,9 @@ body{
 	width: 100px;
 	height: 100px;
 	border: 2px solid gray;
+}
+.inputWrodWapper:HOVER{
+	cursor: move;
 }
 .inputWrodWapper input{
 	position:relative;
@@ -47,22 +47,147 @@ input {
 [id^=cnzz_stat_icon]{
   display:none;
 }
+#dialog{
+	display: none;
+	padding: 0;
+}
+.ui-widget-content,.ui-widget-header{
+	border: none;
+}
+.ui-tabs-nav{
+	background: none;
+}
+.ui-tabs .ui-tabs-panel{
+	border-top: 1px solid #aaaaaa;
+}
+.ui-widget-content input,.ui-widget-content select {
+	width: 200px;
+	height: 20px;
+	font-size: 20px;
+}
+.ui-widget-content select {
+	width: 200px;
+	height: 25px;
+}
+
+.ui-widget-content input{
+	background-color: transparent;
+	border: 1px solid gray;
+	color: #000;
+    line-height: 100%;
+    text-align: inherit;
+}
+ul.form {
+	list-style: none;
+}
+ul.form  li{
+	list-style: none;
+	padding-bottom: 5px;
+	font-size: 20px;
+}
+body{
+	text-align: center;
+}
+.container {
+	margin: 0 auto;
+	width: 512px;
+}
 </style>
 </head>
 <body >
+<div class="container" >
 <canvas id="myCanvas" width="512px" height="512px">your browser does not support the canvas tag </canvas>
 <div class="inputWrodWapper" >
 </div>
+</div>
+<div id="dialog"  title="设计内容">
+  <div id="tabs">
+	  <ul>
+	    <li><a href="#fragment-1">文字</a></li>
+	    <li><a href="#fragment-2">图片</a></li>
+	  </ul>
+	  <div id="fragment-1">
+	  <ul class="form">
+	  	<li>内容：<input id="content" /></li>
+  		<li>字体：<select>
+	       <option>宋体</option>
+	       <option>隶书</option>
+	       </select></li>
+		<li>大小：<select id="size">
+	       <option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option selected="selected" value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+			<option value="21">21</option>
+			<option value="22">22</option>
+			<option value="23">23</option>
+			<option value="24">24</option>
+			<option value="25">25</option>
+			<option value="26">26</option>
+			<option value="27">27</option>
+			<option value="28">28</option>
+			<option value="29">29</option>
+			<option value="30">30</option>
+	       </select></li>
+	  </ul>
+	  </div>
+	  <div id="fragment-2">
+	    暂未支持图片，程序员哥哥会尽快为你呈现!
+	  </div>
+  </div>
+</div>
+<script src="javascripts/jquery-1.10.2.js"></script>
+<script src="javascripts/jquery-ui.js"></script>
 <script type="text/javascript">
 var canvas=document.getElementById('myCanvas');
 var ctx=canvas.getContext('2d');
 var bg = new Image();  
 bg.src= 'images/hezi_bg.jpg';
+
+$(function(){
+	$("#tabs" ).tabs();
+});
+
 bg.onload=function(){
 	drawDiv($(".inputWrodWapper"));
 }; 
 $(".inputWrodWapper").data("text","Twitter").dblclick(function(){
-	alert("dbClick");
+	 $( "#dialog" ).dialog({  modal: true 
+		 ,width:"500"
+		, buttons: [
+		           {
+		             text: "应用",
+		             icons: {
+		               primary: "ui-icon-print"
+		             },
+		             click: function() {
+		               $(".inputWrodWapper").data("text",$("#content").val());
+		               $(".inputWrodWapper").data("size",$("#size").val());
+		               drawDiv($(".inputWrodWapper"));
+		               $( this ).dialog( "close" );
+		             }
+		           }
+		          , {
+			             text: "取消",
+			             icons: {
+			               primary: "ui-icon-closethick"
+			             },
+			             click: function() {
+			               $( this ).dialog( "close" );
+			             }
+			        }
+		   ]	 
+	 });
 }).draggable({
   drag: function( event, ui ) {
 	  drawDiv(ui,$(this));
@@ -74,12 +199,13 @@ function redrawCanvas(){
 function drawDiv($div,$this){
 	var offset,$this=$this||$div;
 	if($div.is && $div.is("div")){
-		offset= $div.offset();
+		offset= $div.position();
 	}else{
-		offset= $div.offset;
+		offset= $div.position;
 	}
  redrawCanvas(); 
- ctx.font="20px 'Tekton Pro'";
+ size = $this.data("size") || "20";
+ ctx.font=size+"px 'Tekton Pro'";
  ctx.fillStyle="#FFF";
  ctx.fillText($this.data("text"),offset.left+20,offset.top+50);
 } 
