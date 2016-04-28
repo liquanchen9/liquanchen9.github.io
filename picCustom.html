@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <!-- https://code.jquery.com/ui/1.11.4/themes/black-tie/jquery-ui.css -->
 <link rel="stylesheet" href="stylesheets/jquery-ui.css?20160427">
@@ -96,7 +99,7 @@ body{
 </head>
 <body >
 <div class="container" >
-<canvas id="myCanvas" width="512px" height="512px">your browser does not support the canvas tag </canvas>
+<canvas id="myCanvas" width="512px" height="512px">你的浏览器版本过低 ！请升级或者使用其他浏览器重试. </canvas>
 <div class="inputWrodWapper" >
 </div>
 </div>
@@ -195,6 +198,10 @@ body{
 	  </div>
   </div>
 </div>
+<!--[if lt IE 9]>
+<script src="assets/plugins/respond.min.js"></script>
+<script src="assets/plugins/excanvas.min.js"></script> 
+<![endif]-->   
 <script src="javascripts/jquery-1.10.2.js?20160427"></script>
 <script src="javascripts/jquery-ui.js?20160427"></script>
 <script type="text/javascript">
