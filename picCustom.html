@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- https://code.jquery.com/ui/1.11.4/themes/black-tie/jquery-ui.css -->
+<link rel="stylesheet" href="stylesheets/jquery-ui.css?20160427">
+<style type="text/css">
+ #draggable {
+   width: 100px;  
+   height: 100px;
+   background: #ccc;
+ }  
+.container{
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+.inputWrodWapper{
+	position: absolute;
+	z-index:9;
+	left: 140px;
+	top: 200px;
+	width: 100px;
+	height: 100px;
+	border: 2px solid gray;
+}
+.inputWrodWapper:HOVER{
+	cursor: move;
+}
+.inputWrodWapper input{
+	position:relative;
+}
+input {
+	background-color: transparent;
+	border: 1px solid gray;
+	color: #fff;
+	width: 200px;
+	height: 50px;
+    line-height: 150%;
+    font-size: 32px;
+    text-align: center;
+}
+#jf_fn_pop{
+	display: none;
+}
+[id^=cnzz_stat_icon]{
+  display:none;
+}
+#dialog{
+	display: none;
+	padding: 0;
+}
+.ui-widget-content,.ui-widget-header{
+	border: none;
+}
+.ui-tabs-nav{
+	background: none;
+}
+.ui-tabs .ui-tabs-panel{
+	border-top: 1px solid #aaaaaa;
+}
+.ui-widget-content input,.ui-widget-content select {
+	width: 200px;
+	height: 20px;
+	font-size: 20px;
+}
+.ui-widget-content select {
+	width: 200px;
+	height: 25px;
+}
+
+.ui-widget-content input{
+	background-color: transparent;
+	border: 1px solid gray;
+	color: #000;
+    line-height: 100%;
+    text-align: inherit;
+}
+ul.form {
+	list-style: none;
+}
+ul.form  li{
+	list-style: none;
+	padding-bottom: 5px;
+	font-size: 20px;
+}
+body{
+	text-align: center;
+}
+.container {
+	margin: 0 auto;
+	width: 512px;
+}
+</style>
+</head>
+<body >
+<div class="container" >
+<canvas id="myCanvas" width="512px" height="512px">your browser does not support the canvas tag </canvas>
+<div class="inputWrodWapper" >
+</div>
+</div>
+<div id="dialog"  title="设计内容">
+  <div id="tabs">
+	  <ul>
+	    <li><a href="#fragment-1">文字</a></li>
+	    <li><a href="#fragment-2">图片</a></li>
+	  </ul>
+	  <div id="fragment-1">
+	  <ul class="form">
+	  	<li>内容：<input id="content" /></li>
+  		<li>字体：<select id="fontName">
+	       <option value="FZShuTi">方正舒体</option>
+	       <option value="FZYaoti">方正姚体</option>
+	       <option value="FangSong">仿宋</option>
+	       <option value="SimHei">黑体</option>
+	       <option value="STCaiyun">华文彩云</option>
+	       <option value="STFangsong">华文仿宋</option>
+	       <option value="STXingkai">华文行楷</option>
+	       <option value="STHupo">华文琥珀</option>
+	       <option value="STKaiti">华文楷体</option>
+	       <option value="STLiti">华文隶书</option>
+	       <option value="STSong">华文宋体</option>
+	       <option value="STXihei">华文细黑</option>
+	       <option value="STXinwei">华文新魏</option>
+	       <option value="STZhongsong">华文中宋</option>
+	       <option value="KaiTi">楷体</option>
+	       <option value="LiSu">隶书</option>
+	       <option value="LiSu">宋体</option>
+	       <option value="Microsoft YaHei">微软雅黑</option>
+	       <option value="NSimSun">新宋体</option>
+	       <option value="YouYuan">幼圆</option>
+	      </select></li>
+		<li>大小：<select id="size">
+	       <option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option selected="selected" value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+			<option value="21">21</option>
+			<option value="22">22</option>
+			<option value="23">23</option>
+			<option value="24">24</option>
+			<option value="25">25</option>
+			<option value="26">26</option>
+			<option value="27">27</option>
+			<option value="28">28</option>
+			<option value="29">29</option>
+			<option value="30">30</option>
+			<option value="30">30</option>
+			<option value="31">31</option>
+			<option value="32">32</option>
+			<option value="33">33</option>
+			<option value="34">34</option>
+			<option value="35">35</option>
+			<option value="36">36</option>
+			<option value="37">37</option>
+			<option value="38">38</option>
+			<option value="39">39</option>
+			<option value="40">40</option>
+			<option value="41">41</option>
+			<option value="42">42</option>
+			<option value="43">43</option>
+			<option value="44">44</option>
+			<option value="45">45</option>
+			<option value="46">46</option>
+			<option value="47">47</option>
+			<option value="48">48</option>
+			<option value="49">49</option>
+			<option value="50">50</option>
+			<option value="51">51</option>
+			<option value="52">52</option>
+			<option value="53">53</option>
+			<option value="54">54</option>
+			<option value="55">55</option>
+			<option value="56">56</option>
+			<option value="57">57</option>
+			<option value="58">58</option>
+			<option value="59">59</option>
+			<option value="60">60</option>
+	       </select></li>
+	  </ul>
+	  </div>
+	  <div id="fragment-2">
+	    暂未支持图片，程序员哥哥会尽快为你呈现!
+	  </div>
+  </div>
+</div>
+<script src="javascripts/jquery-1.10.2.js?20160427"></script>
+<script src="javascripts/jquery-ui.js?20160427"></script>
+<script type="text/javascript">
+var canvas=document.getElementById('myCanvas');
+var ctx=canvas.getContext('2d');
+var bg = new Image();  
+bg.src= 'images/hezi_bg.jpg';
+
+$(function(){
+	$("#tabs" ).tabs();
+});
+
+bg.onload=function(){
+	drawDiv($(".inputWrodWapper"));
+}; 
+$(".inputWrodWapper").data("text","Twitter").dblclick(function(){
+	 $( "#dialog" ).dialog({  modal: true 
+		 ,width:"500"
+		, buttons: [
+		           {
+		             text: "应用",
+		             icons: {
+		               primary: "ui-icon-print"
+		             },
+		             click: function() {
+		               $(".inputWrodWapper").data("text",$("#content").val());
+		               $(".inputWrodWapper").data("size",$("#size").val());
+		               $(".inputWrodWapper").data("fontName",$("#fontName").val());
+		               drawDiv($(".inputWrodWapper"));
+		               $( this ).dialog( "close" );
+		             }
+		           }
+		          , {
+			             text: "取消",
+			             icons: {
+			               primary: "ui-icon-closethick"
+			             },
+			             click: function() {
+			               $( this ).dialog( "close" );
+			             }
+			        } 
+		   ]	 
+	 });
+}).draggable({
+  drag: function( event, ui ) {
+	  drawDiv(ui,$(this));
+  }
+}).resizable();
+function redrawCanvas(){
+	ctx.drawImage(bg,0,0,512,512);
+}  
+function drawDiv($div,$this){
+	var offset,$this=$this||$div;
+	if($div.is && $div.is("div")){
+		offset= $div.position();
+	}else{
+		offset= $div.position;
+	}
+ redrawCanvas(); 
+ var size = $this.data("size") || "20";
+ var fontName= $this.data("fontName") || "Tekton Pro";
+ ctx.font=size+"px '"+fontName+"'";
+ ctx.fillStyle="#FFF";
+ ctx.fillText($this.data("text"),offset.left+20,offset.top+50);
+ 
+ resizeDiv($this,$this.data("text"),size);
+} 
+function resizeDiv($div,text,size){
+	var length = getlenth(text);
+	var minWidth =  length*size /2 ;
+	
+	if($div.height()<size){
+		$div.height(size+5);
+	}
+	if($div.width()<minWidth){
+		$div.width(minWidth+5);
+	}
+}
+function getlenth(text){
+	return text.replace(/[^\u0000-\u00FF]/ig,'aa').length;
+}
+</script>
+<!-- 
+ <input type="hidden" value="Qeg8aFLzP9hjnIcmlf0vuuIvVaxw" />
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256371324'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1256371324%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+ --></body>
+</html>  
