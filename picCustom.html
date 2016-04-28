@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- https://code.jquery.com/ui/1.11.4/themes/black-tie/jquery-ui.css -->
-<link rel="stylesheet" href="stylesheets/jquery-ui.css">
+<link rel="stylesheet" href="stylesheets/jquery-ui.css?20160427">
 <style type="text/css">
  #draggable {
    width: 100px;  
@@ -109,10 +109,28 @@ body{
 	  <div id="fragment-1">
 	  <ul class="form">
 	  	<li>内容：<input id="content" /></li>
-  		<li>字体：<select>
-	       <option>宋体</option>
-	       <option>隶书</option>
-	       </select></li>
+  		<li>字体：<select id="fontName">
+	       <option value="FZShuTi">方正舒体</option>
+	       <option value="FZYaoti">方正姚体</option>
+	       <option value="FangSong">仿宋</option>
+	       <option value="SimHei">黑体</option>
+	       <option value="STCaiyun">华文彩云</option>
+	       <option value="STFangsong">华文仿宋</option>
+	       <option value="STXingkai">华文行楷</option>
+	       <option value="STHupo">华文琥珀</option>
+	       <option value="STKaiti">华文楷体</option>
+	       <option value="STLiti">华文隶书</option>
+	       <option value="STSong">华文宋体</option>
+	       <option value="STXihei">华文细黑</option>
+	       <option value="STXinwei">华文新魏</option>
+	       <option value="STZhongsong">华文中宋</option>
+	       <option value="KaiTi">楷体</option>
+	       <option value="LiSu">隶书</option>
+	       <option value="LiSu">宋体</option>
+	       <option value="Microsoft YaHei">微软雅黑</option>
+	       <option value="NSimSun">新宋体</option>
+	       <option value="YouYuan">幼圆</option>
+	      </select></li>
 		<li>大小：<select id="size">
 	       <option value="7">7</option>
 			<option value="8">8</option>
@@ -138,6 +156,37 @@ body{
 			<option value="28">28</option>
 			<option value="29">29</option>
 			<option value="30">30</option>
+			<option value="30">30</option>
+			<option value="31">31</option>
+			<option value="32">32</option>
+			<option value="33">33</option>
+			<option value="34">34</option>
+			<option value="35">35</option>
+			<option value="36">36</option>
+			<option value="37">37</option>
+			<option value="38">38</option>
+			<option value="39">39</option>
+			<option value="40">40</option>
+			<option value="41">41</option>
+			<option value="42">42</option>
+			<option value="43">43</option>
+			<option value="44">44</option>
+			<option value="45">45</option>
+			<option value="46">46</option>
+			<option value="47">47</option>
+			<option value="48">48</option>
+			<option value="49">49</option>
+			<option value="50">50</option>
+			<option value="51">51</option>
+			<option value="52">52</option>
+			<option value="53">53</option>
+			<option value="54">54</option>
+			<option value="55">55</option>
+			<option value="56">56</option>
+			<option value="57">57</option>
+			<option value="58">58</option>
+			<option value="59">59</option>
+			<option value="60">60</option>
 	       </select></li>
 	  </ul>
 	  </div>
@@ -146,8 +195,8 @@ body{
 	  </div>
   </div>
 </div>
-<script src="javascripts/jquery-1.10.2.js"></script>
-<script src="javascripts/jquery-ui.js"></script>
+<script src="javascripts/jquery-1.10.2.js?20160427"></script>
+<script src="javascripts/jquery-ui.js?20160427"></script>
 <script type="text/javascript">
 var canvas=document.getElementById('myCanvas');
 var ctx=canvas.getContext('2d');
@@ -173,6 +222,7 @@ $(".inputWrodWapper").data("text","Twitter").dblclick(function(){
 		             click: function() {
 		               $(".inputWrodWapper").data("text",$("#content").val());
 		               $(".inputWrodWapper").data("size",$("#size").val());
+		               $(".inputWrodWapper").data("fontName",$("#fontName").val());
 		               drawDiv($(".inputWrodWapper"));
 		               $( this ).dialog( "close" );
 		             }
@@ -185,7 +235,7 @@ $(".inputWrodWapper").data("text","Twitter").dblclick(function(){
 			             click: function() {
 			               $( this ).dialog( "close" );
 			             }
-			        }
+			        } 
 		   ]	 
 	 });
 }).draggable({
@@ -204,11 +254,28 @@ function drawDiv($div,$this){
 		offset= $div.position;
 	}
  redrawCanvas(); 
- size = $this.data("size") || "20";
- ctx.font=size+"px 'Tekton Pro'";
+ var size = $this.data("size") || "20";
+ var fontName= $this.data("fontName") || "Tekton Pro";
+ ctx.font=size+"px '"+fontName+"'";
  ctx.fillStyle="#FFF";
  ctx.fillText($this.data("text"),offset.left+20,offset.top+50);
+ 
+ resizeDiv($this,$this.data("text"),size);
 } 
+function resizeDiv($div,text,size){
+	var length = getlenth(text);
+	var minWidth =  length*size /2 ;
+	
+	if($div.height()<size){
+		$div.height(size+5);
+	}
+	if($div.width()<minWidth){
+		$div.width(minWidth+5);
+	}
+}
+function getlenth(text){
+	return text.replace(/[^\u0000-\u00FF]/ig,'aa').length;
+}
 </script>
 <!-- 
  <input type="hidden" value="Qeg8aFLzP9hjnIcmlf0vuuIvVaxw" />
