@@ -207,7 +207,32 @@ $(function(){
 	$("#tabs" ).tabs();
 	
 	$("#btn_save_local").click(function(){
-		window.open(canvas.toDataURL());
+		//octet-stream
+		//location.href = canvas.toDataURL().replace(/^data:image\/png;/g,"data:image/octet-stream;");
+        
+		//用echarts 的保存图片逻辑 进行保存图片
+		var $a = document.createElement('a');
+        $a.download = '我的设计图.png' ;
+        $a.target = '_blank';
+        $a.href = canvas.toDataURL();
+        // Chrome and Firefox
+        if (typeof MouseEvent === 'function') {
+            var evt = new MouseEvent('click', {
+                view: window,
+                bubbles: true,
+                cancelable: false
+            });
+            $a.dispatchEvent(evt);
+        }
+        // IE
+        else {
+            var html = ''
+                + '<body style="margin:0;">'
+                + '<img src="' + url + '" style="max-width:100%;" title="' + ( '我的设计图.png') + '" />'
+                + '</body>';
+            var tab = window.open();
+            tab.document.write(html);
+        }
 	});
 });
 
@@ -274,7 +299,7 @@ function resizeDiv($div,text,size){
 		$div.height(size+5);
 	}
 	if($div.width()<minWidth){
-		$div.width(minWidth+5);
+		$div.width(minWidth+20);
 	}
 }
 function getlenth(text){
