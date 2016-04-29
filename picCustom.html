@@ -34,16 +34,7 @@
 .inputWrodWapper input{
 	position:relative;
 }
-input {
-	background-color: transparent;
-	border: 1px solid gray;
-	color: #fff;
-	width: 200px;
-	height: 50px;
-    line-height: 150%;
-    font-size: 32px;
-    text-align: center;
-}
+
 #jf_fn_pop{
 	display: none;
 }
@@ -100,6 +91,7 @@ body{
 <body >
 <div class="container" >
 <canvas id="myCanvas" width="512px" height="512px">你的浏览器版本过低 ！请升级或者使用其他浏览器重试. </canvas>
+	<input id="btn_save_local" type="button" value="保存" />
 <div class="inputWrodWapper" >
 </div>
 </div>
@@ -209,9 +201,14 @@ var canvas=document.getElementById('myCanvas');
 var ctx=canvas.getContext('2d');
 var bg = new Image();  
 bg.src= 'images/hezi_bg.jpg';
+bg.crossOrigin = "*";
 
 $(function(){
 	$("#tabs" ).tabs();
+	
+	$("#btn_save_local").click(function(){
+		console.log(canvas.toDataURL());
+	});
 });
 
 bg.onload=function(){
