@@ -15,7 +15,7 @@ cd %daemon_bin_path%
 set startupOptions=++StartMode=exe
 set startupOptions=%startupOptions% --StartPath=%redmine_home%\
 set startupOptions=%startupOptions% --StartImage=%ruby_exe%
-set startupOptions=%startupOptions% ++StartParams=bin/rails;server;-e;production
+set startupOptions=%startupOptions% ++StartParams=bin/rails;server;-b;0.0.0.0;-e;production
 
 
 
