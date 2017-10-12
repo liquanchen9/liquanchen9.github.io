@@ -34,9 +34,14 @@ user-scalable：用户是否可以手动缩放
 	   		+"</body></html>"
 	   	);
 		loginer.onload=function(){
+			var loginSubmited = false;
 			try{
 				loginerDoc =  loginer.contentDocument;
+				loginSubmited = (!loginerDoc)
 			}catch(e){
+				loginSubmited = true;
+			}
+			if(loginSubmited){
 				location.href='http://www.xiaoheiban.cn/Message';
 			}
 		};
