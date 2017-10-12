@@ -1,0 +1,33 @@
+<html>
+<head>
+  <title>晓黑板网页版登录</title>
+</head>
+<body>
+  <iframe id="loginer">
+  </iframe>
+  
+  <a href="http://www.xiaoheiban.cn/Message">跳转到消息页</a>
+  <script>
+  	(function(loginer){
+  		var  loginerDoc =  loginer.contentDocument;
+		loginerDoc.write(
+	   		"<html><head></head><body>"
+	   		+'<form action="http://www.xiaoheiban.cn/NewUser-login" method="POST">'
+			+'  	注册手机：<input name="username" value="" /><br />'
+			+'		密　　码：<input type="password" name="password" value="" /><br />'
+			+'		 　　　　　<input type="submit" value="提交" />'
+		 	+'</form>'
+	   		+"</body></html>"
+	   	);
+		loginer.onload=function(){
+			try{
+				loginerDoc =  loginer.contentDocument;
+			}catch(e){
+				location.href='http://www.xiaoheiban.cn/Message';
+			}
+		};
+  	})( document.getElementById("loginer"));
+  </script>
+
+</body>
+<html>
