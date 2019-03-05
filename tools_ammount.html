@@ -178,7 +178,6 @@
 </form>
 <script type="text/javascript" src="http://www.shgjj.com/app/wap/js/jquery.js"></script>
  <script type="text/javascript" src="http://www.shgjj.com/app/wap/js/swiper.js"></script>
-<script type="text/javascript" src="http://www.shgjj.com/app/wap/js/scripts.js"></script>
 <script type="text/javascript" src="zigeCalc.js"></script>
 
 
@@ -187,6 +186,37 @@ $(function(){
 	$(document).on('click','.nav li',function(){
 		$(this).addClass('on').siblings().removeClass('on');
 	})	
+	
+	
+	if (/Android|Windows Phone|webOS|iPhone|iPod|BlackBerry|iPad|Opera/i.test(navigator.userAgent)) {
+		$('*').css('cursor','pointer');
+	};
+
+	$(document).on('click', '.sex li', function() {
+		$(this).addClass('on').siblings().removeClass('on');
+		var index = $(this).index();
+		$(this).parents('.sex').find('input').eq(index).prop('checked', true);
+	});	
+	
+	$(document).on('click', '.houseType li.one ', function() {
+			$("li.drlBuildDate").hide();
+	});
+	
+	$(document).on('click', '.houseType li.two ', function() {
+			$("li.drlBuildDate").show();
+	});
+
+
+	$(document).on('click', '.toolsAmmount', function() {
+		calcLoanAmount()
+	});
+
+	$(document).on('click', '#reinput2', function() {
+		$('.toolsAmmount').text('计算');
+		$('.result, .step2').hide();
+		$('.step1').show();
+	});
+	
 })
 </script>
 </body></html>
