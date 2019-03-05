@@ -1,0 +1,192 @@
+
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=GBK"></head><body><div class="ctitle">
+    <div class="back"></div>
+    <h1>贷款试算</h1>
+   <!-- <div class="rtext toolsAmmount">计算</div> -->
+  </div>
+  <div class="headblank"></div>
+
+
+
+
+
+
+<meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>贷款试算</title>
+<link rel="stylesheet" type="text/css" href="/app/wap/css/style.css">
+
+
+<form>
+ 
+  <div class="paid">
+    <div class="step1">
+      <ul>
+        <li>主贷人公积金余额(元)：
+          <input type="text" name="txtMainLoaneePfcAmount" id="txtMainLoaneePfcAmount" placeholder="点击输入">
+        </li>
+        <li>主贷人补充公积金余额(元)：
+          <input type="text" name="txtMainLoaneeExPfcAmount" id="txtMainLoaneeExPfcAmount" placeholder="点击输入">
+        </li>
+        <li>主贷人住房公积金缴存基数(元)：
+          <input type="text" name="txtMainLoaneePfcMonthPay" id="txtMainLoaneePfcMonthPay" placeholder="点击输入">
+        </li>
+        <li>主贷人年龄(岁)：
+          <input type="text" name="txtMainLoaneeAge" id="txtMainLoaneeAge" placeholder="点击输入">
+        </li>
+        <li>主贷人性别：
+          <div class="sex">
+            <ul>
+              <li class="on">男</li>
+              <li>女</li>
+            </ul>
+            <input style="float:left; display:none" type="radio" name="radMainLoaneeGender" id="radMainLoaneeGender1" value="0" checked="">
+            <input style="float:left; display:none" type="radio" name="radMainLoaneeGender" id="radMainLoaneeGender2" value="1">
+          </div>
+        </li>
+        
+        
+        
+        
+         <li>参贷人公积金余额(元)：
+          <input type="text" name="txtSecondaryPfcAmount" id="txtSecondaryPfcAmount" placeholder="点击输入">
+        </li>
+        <li>参贷人补充公积金余额(元)：
+          <input type="text" name="txtSecondaryExPfcAmount" id="txtSecondaryExPfcAmount" placeholder="点击输入">
+        </li>
+        <li>参贷人住房公积金缴存基数(元)：
+          <input type="text" name="txtSecondaryPfcMonthPay" id="txtSecondaryPfcMonthPay" placeholder="点击输入">
+        </li>
+        <li>家庭贷款次数：
+           <select name="loanTimes" id="loanTimes">
+                <option value="-1" selected="">请选择</option>
+                <option value="0">0次</option>
+                <option value="1">1次</option>
+                <option value="2">2次及以上</option>
+                 
+                </select>
+        </li>
+      </ul>
+      <ul>
+        <li>房屋价格(万元)：
+          <input type="text" name="txtHousePrice" id="txtHousePrice" placeholder="点击输入">
+        </li>
+        <li>房屋类型：
+          <div class="sex houseType" hi="">
+            <ul>
+              <li class="on one">一手房</li>
+              <li class="two">二手房</li>
+            </ul>
+            <input style="float:left; display:none" type="radio" name="radHouseType" id="radHouseType1" value="0" checked="">
+            <input style="float:left; display:none" type="radio" name="radHouseType" id="radHouseType2" value="1">
+          </div>
+        </li>
+        <li class="drlBuildDate" hidden="">二手房竣工年份：(年)<select name="drlBuildDate" id="drlBuildDate">
+				<option value="15">未知</option><option value="2016">2016</option><option value="2015">2015</option>
+				<option value="2014">2014</option><option value="2013">2013</option>
+				<option value="2012">2012</option><option value="2011">2011</option>
+				<option value="2010">2010</option><option value="2009">2009</option>
+				<option value="2008">2008</option><option value="2007">2007</option>
+				<option value="2006">2006</option><option value="2005">2005</option>
+				<option value="2004">2004</option><option value="2003">2003</option>
+				<option value="2002">2002</option><option value="2001">2001</option>
+				<option value="2000">2000</option><option value="1999">1999</option>
+				<option value="1998">1998</option><option value="1997">1997</option>
+				<option value="1996">1996</option><option value="1995">1995</option>
+				<option value="1994">1994</option><option value="1993">1993</option>
+				<option value="1992">1992</option><option value="1991">1991</option>
+				<option value="1990">1990</option><option value="1989">1989</option>
+				<option value="1988">1988</option><option value="1987">1987</option>
+				<option value="1986">1986</option><option value="1985">1985</option>
+				<option value="1984">1984</option><option value="1983">1983</option>
+				<option value="1982">1982</option><option value="1981">1981</option>
+				<option value="1980">1980</option><option value="1979">1979</option>
+				<option value="1978">1978</option><option value="1977">1977</option>
+				<option value="1976">1976</option><option value="1975">1975</option>
+				<option value="1974">1974</option><option value="1973">1973</option>
+				<option value="1972">1972</option><option value="1971">1971</option>
+				<option value="1970">1970</option><option value="1969">1969</option>
+				<option value="1968">1968</option><option value="1967">1967</option>
+				<option value="1966">1966</option><option value="1965">1965</option>
+				<option value="1964">1964</option><option value="1963">1963</option>
+				<option value="1962">1962</option><option value="1961">1961</option>
+				<option value="1960">1960</option><option value="1959">1959</option>
+				<option value="1958">1958</option><option value="1957">1957</option>
+				<option value="1956">1956</option><option value="1955">1955</option>
+				<option value="1954">1954</option><option value="1953">1953</option>
+				<option value="1952">1952</option><option value="1951">1951</option>
+				<option value="1950">1950</option><option value="1949">1949</option>
+				<option value="1948">1948</option><option value="1947">1947</option>
+				<option value="1946">1946</option><option value="1945">1945</option>
+				<option value="1944">1944</option><option value="1943">1943</option>
+				<option value="1942">1942</option><option value="1941">1941</option></select></li>
+        
+        
+         <li>房屋面积(平方米)：
+          <input type="text" name="txtArea" id="txtArea" placeholder="点击输入">
+        </li>
+        
+         <li>套数认定：
+                
+                <select name="taoshu" id="taoshuid">
+                <option value="0" selected="">请选择</option>
+                <option value="1">首套</option>
+                <option value="2">第二套改善型</option>
+                <option value="3">第二套非改善型</option>
+                </select>
+        
+        </li>
+        
+         <li>房屋类别：
+                
+                <select name="houseKind" id="houseKind">
+                <option value="-1" selected="">请选择</option>
+                <option value="0">普通住房</option>
+                <option value="1">非普通住房</option>
+              
+                </select>
+        
+        </li>
+        
+      </ul>
+      <div class="cbtn  toolsAmmount">计算</div>
+        <span class="gray" style="line-height:160%">注：按照当前最新的公积金贷款政策试算</span>
+    </div>
+    
+    <div class="result">
+      <ul>
+        <li>公积金可贷款额度(元)：
+          <div class="num" id="txtPfcLoanAmount"></div>
+        </li>
+        <li>补充公积金可贷款额度(元)：
+          <div class="num" id="txtExPfcLoanAmount"></div>
+        </li>
+        <li>总贷款额度(元)：
+          <div class="num" id="txtLoanAmount"></div>
+        </li>
+        <li>可贷年限范围(年)：
+          <div class="num" id="txtLoanYears"></div>
+        </li>
+      </ul>
+      <span class="gray" style="line-height:160%">贷款额度试算结果为基于用户自行填写的有关条件判断得出，不作为公积金贷款受理依据。若要进一步查询公积金贷款资格与额度，请通过<a href="http://m.shgjj.com/gjjwx/weixin/toregister" target="_parent">用户注册</a>和实名认证后，登陆上海住房公积金网网上贷款专栏进行查询。</span>
+      <input type="submit" id="reinput2" class="cbtn" style="margin-top:20px!important" value="重新输入">
+    </div>
+  </div>
+</form>
+<script type="text/javascript" src="http://www.shgjj.com/app/wap/js/jquery.js"></script>
+ <script type="text/javascript" src="http://www.shgjj.com/app/wap/js/swiper.js"></script>
+<script type="text/javascript" src="http://www.shgjj.com/app/wap/js/scripts.js"></script>
+<script type="text/javascript" src="zigeCalc.js"></script>
+
+
+<script>
+$(function(){
+	$(document).on('click','.nav li',function(){
+		$(this).addClass('on').siblings().removeClass('on');
+	})	
+})
+</script>
+</body></html>
