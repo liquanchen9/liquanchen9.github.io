@@ -18,12 +18,17 @@
 <script type="text/javascript">
     function fun()
     {
+try{
         var val=document.getElementById("val").value;
         var zhText = val;
         zhText = encodeURI(zhText);
         document.write("<audio autoplay=\"autoplay\">");
         document.write("<source src=\"http://tts.baidu.com/text2audio?lan=en&ie=UTF-8&spd=2&text="+ zhText +"\" type=\"audio/mpeg\">");
         document.write("<embed height=\"0\" width=\"0\" src=\"http://tts.baidu.com/text2audio?lan=en&ie=UTF-8&spd=2&text="+ zhText +"\">");
-        document.write("</audio>");
+        document.write("</audio>"); 
+alert(113);
+
+}catch(e){alert(e+'')}
+
     }
 </script>
