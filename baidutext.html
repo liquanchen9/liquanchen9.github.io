@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+<script type="text/javascript">
+    function funa()
+    {
+        var val=document.getElementById("val").value;
+        var zhText = val;
+        zhText = encodeURI(zhText);
+ document.getElementById("lj").href="http://tts.baidu.com/text2audio?lan=en&ie=UTF-8&spd=2&text="+ zhText;
+    }
+</script>
 </head><body>
     <table align="center">
         <tr>
@@ -16,16 +25,5 @@
         </tr>
 
     </table>
-<script type="text/javascript">
-    function funa()
-    {
-        var val=document.getElementById("val").value;
-        var zhText = val;
-        zhText = encodeURI(zhText);
- document.getElementById("lj").href="http://tts.baidu.com/text2audio?lan=en&ie=UTF-8&spd=2&text="+ zhText;
-
-
-    }
-</script>
 </body>
 </html>
