@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>Document</title>
 <script type="text/javascript">
-    function funa()
-    {
+    function funa(){
         var val=document.getElementById("val").value;
         var zhText = val;
         zhText = encodeURI(zhText);
- document.getElementById("lj").href="http://tts.baidu.com/text2audio?lan=en&ie=UTF-8&spd=2&text="+ zhText;
+        document.getElementById("lj").href="//tts.baidu.com/text2audio?lan=en&ie=UTF-8&spd=2&text="+ zhText;
+        alert("可以点击下载了！")
     }
 </script>
 </head><body>
