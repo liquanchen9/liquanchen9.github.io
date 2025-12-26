@@ -1,0 +1,1 @@
+git clone https://github.com/liquanchen9/vless-demo.git && cd vless-demo  && docker build . --file Dockerfile3  --tag cpolarv1:latest && docker run  --cap-add=NET_ADMIN -e PORT=8080  -e ID=${ID} -e WSPATH=1ws -e CPOLAR_TOKEN=${CPOLAR_TOKEN}  cpolarv1:latest
